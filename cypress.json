@@ -1,0 +1,6 @@
+{
+    "defaultCommandTimeout": 100000,
+    "chromeWebSecurity": false,
+    "baseUrl": "https://app-dev.partie.com"
+
+}
