@@ -1,4 +1,4 @@
-describe("Commence Partie", () => {
+describe("Commence Partie And Send First Message Test", () => {
 
   before(function () {
       cy.SignIn()
@@ -26,7 +26,8 @@ describe("Commence Partie", () => {
  const checkEndPartieButtonExist    =               'button:nth-child(2) > div > span.action-title';
  const hideContextMenu              =                'div#overlayDiv';
 
-  it("Creating Partie", () => {
+  it("Commence Partie And Send First Message Test", () => {
+    cy.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
       cy.get(goToPartieLink).contains('Partie').click();
       cy.get(createPatie).click();
       cy.get(clickGameImage).click();
@@ -52,8 +53,12 @@ describe("Commence Partie", () => {
       cy.wait(2000);
       cy.get(clickOnThreeDots).click(); 
       cy.wait(2000);
-      cy.get(checkEndPartieButtonExist).should('contain', 'End Partie');
+      cy.get(checkEndPartieButtonExist).should('contain', 'End Partie'); // check End Partie in ContextMenu
       cy.get(hideContextMenu).click();
+      cy.get('input#message-input').type(finalPostText); // type message in party
+      cy.get(div > button[type="submit"]).click()// click on send button
+      cy.get('div.chat-message-content').last().should('contain', finalPostText) // check message in party
+
  
   });
 });

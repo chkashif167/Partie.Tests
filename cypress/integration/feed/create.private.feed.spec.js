@@ -1,4 +1,4 @@
-describe("Create Private Feed", () => {
+describe("Create Private Post", () => {
 
     before(function () {
         cy.SignIn()
