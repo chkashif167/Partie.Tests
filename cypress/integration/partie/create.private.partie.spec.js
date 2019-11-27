@@ -2,11 +2,12 @@ describe("Create Private Partie Test", () => {
 
     before(function () {
         cy.SignIn()
+        cy.fixture('vars.json').as('vars')
      })
    
 
     //create randon parity numbers
-   const partieNumber = Math.floor(Math.random() * 100);
+   const partieNumber = Math.floor(Math.random() * 1000);
    const finalPostText = "This is Public Partie Number " + partieNumber;
 
    // const to get html elements
@@ -32,7 +33,13 @@ describe("Create Private Partie Test", () => {
         cy.get(selectPrivacyOption).click();
         cy.get(selectTermsandConditions).click();
         cy.get(submithotstPartiy).click();
-        cy.visit("https://app-dev.partie.com/partie/all");
+
+        cy.get('@vars').then((items) => { 
+            const item = items[0] 
+            cy.log(item.PARTIES_LOUBY_URL)
+            cy.visit(item.PARTIES_LOUBY_URL);
+          })
+        
         cy.get(selectPartieTitle).contains(finalPostText).should("be.visible");;
    
     });

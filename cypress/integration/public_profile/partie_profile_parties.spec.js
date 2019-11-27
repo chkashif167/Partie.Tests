@@ -2,6 +2,8 @@ describe('Profile Page Partie Counts', ()=> {
 
       before(function () {
        //cy.SignIn()
+       cy.fixture('vars.json').as('vars')
+
        })
    
   
@@ -12,9 +14,17 @@ describe('Profile Page Partie Counts', ()=> {
      const partiesTab3                    =      '.profile-quick-stats > :nth-child(3)';
      const modalList                      =      '.partie-title';
      const closeModal                     =      'div.modal-header > button > img';
-     const expectedVal1                   =       80;
      let   dynamicParties;
             
+
+
+
+  cy.get('@vars').then((items) => {
+
+    const item = items[0]
+   cy.log(item.FOLLOWRSCOUNTS)
+  
+  })
 
                     // cy.wait(3000);
                     // cy.get(profileBtn).click(); 
@@ -58,16 +68,20 @@ describe('Profile Page Partie Counts', ()=> {
                     // cy.wait(2000);
                     // cy.get(partiesTab3).click(); 
 
-                    cy.server()
-                    cy.route({
-                      method: 'GET',
-                      url: '/typicode/demo/posts',
-                     response: {}
-                    }).as('apiCheck')
-                    cy.visit('https://my-json-server.typicode.com/')
-                    cy.wait('@apiCheck').then((xhr) => {
-                      assert.isNotNull(xhr.response.body.data, 'Post')
-                    })
+
+
+
+                   // =======================================
+                    // cy.server()
+                    // cy.route({
+                    //   method: 'GET',
+                    //   url: '/typicode/demo/posts',
+                    //  response: {}
+                    // }).as('apiCheck')
+                    // cy.visit('https://my-json-server.typicode.com/')
+                    // cy.wait('@apiCheck').then((xhr) => {
+                    //   assert.isNotNull(xhr.response.body.data, 'Post')
+                    // })
                  
     
      
@@ -76,7 +90,9 @@ describe('Profile Page Partie Counts', ()=> {
 
   
       
-  })
+      })  
+    
+
   
   
   

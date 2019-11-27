@@ -2,12 +2,13 @@ describe("Invite Friend To Join Partie", () => {
 
   before(function () {
       cy.SignIn()
+      cy.fixture('vars.json').as('vars')
    })
  
 
   //create randon parity numbers
  const partieNumber = Math.floor(Math.random() * 1000);
- const finalPostText = "This is Public Partie Number " + partieNumber;
+ const finalPostText = "This is Public Partie Number to send join request" + partieNumber;
 
  // const to get html elements
  const goToPartieLink              =              'nav > a:nth-child(2)';
@@ -38,7 +39,14 @@ describe("Invite Friend To Join Partie", () => {
       cy.wait(2000);
       cy.get(submithotstPartiy).click();
       cy.wait(2000);
-      cy.visit("https://app-dev.partie.com/partie/all");
+     
+      cy.get('@vars').then((items) => { 
+        const item = items[0] 
+        cy.log(item.PARTIES_LOUBY_URL)
+        cy.visit(item.PARTIES_LOUBY_URL);
+      })
+
+
       cy.wait(2000);
       cy.get(selectPartieTitle).contains(finalPostText).should("be.visible");
       cy.get(selectPartieTitle).contains(finalPostText).click();

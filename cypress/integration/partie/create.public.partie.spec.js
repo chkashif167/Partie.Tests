@@ -2,11 +2,12 @@ describe("Create Public Partie", () => {
 
   before(function () {
       cy.SignIn()
+      cy.fixture('vars.json').as('vars')
    })
  
 
   //create randon parity numbers
- const partieNumber = Math.floor(Math.random() * 100);
+ const partieNumber = Math.floor(Math.random() * 1000);
  const finalPostText = "This is Public Partie Number " + partieNumber;
 
  // const to get html elements
@@ -31,11 +32,18 @@ describe("Create Public Partie", () => {
       cy.get(supllyObjective).type('this is objective');
      // cy.get(selectPrivacyOption).click();
       cy.get(selectTermsandConditions).click();
-      cy.wait(2000);
+      cy.wait(1000);
       cy.get(submithotstPartiy).click();
-      cy.wait(2000);
-      cy.visit("https://app-dev.partie.com/partie/all");
-      cy.wait(2000);
+      cy.wait(1000);
+      
+      
+      cy.get('@vars').then((items) => { 
+        const item = items[0] 
+        cy.log(item.PARTIES_LOUBY_URL)
+        cy.visit(item.PARTIES_LOUBY_URL);
+      })
+
+      cy.wait(1000);
       cy.get(selectPartieTitle).contains(finalPostText).should("be.visible");;
  
   });

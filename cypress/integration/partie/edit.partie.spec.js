@@ -7,7 +7,7 @@ describe("Edit Partie Test", () => {
   
     //create randon parity numbers
    const EditMSG = Math.floor(Math.random() * 1000);
-   const FinalMSG = " Edit Mesage Number " + EditMSG;
+   const FinalMSG = " Edit Partie Number " + EditMSG;
   
    // const to get html elements
    const goToPartieLink              =              'nav > a:nth-child(2)';
@@ -25,10 +25,10 @@ describe("Edit Partie Test", () => {
    const checkToasterMessage          =              'div#toast-container div > div ';
   const CheckSettingExisit           =               'button:nth-child(3) > div > span.action-title';
   
-    it("Creating Partie", () => {
+    it("Edit Partie", () => {
         cy.get(goToPartieLink).contains('Partie').click();
-        cy.get('partie-room-list-item:nth-child(1) > div > div.content-block > span.partie-title').should('contain', '(Commenced)').click();
-        //cy.get(clickOnThreeDots).click(); 
+        cy.get('span.partie-title').contains('(Host)').click();
+
         cy.wait(1000);
         cy.get(clickOnThreeDots).click();
          cy.wait(1000);
@@ -41,7 +41,7 @@ describe("Edit Partie Test", () => {
         cy.get('input[name="description"]').type(FinalMSG)
         cy.get('.switch.icons-lg span').click()
         cy.get('div#partie-settings-modal div.modal-fixed-bottom > button').click()
-        cy.reload();
+  //      cy.reload();
         cy.get('div.content > h1').should('contain', FinalMSG)
 
         

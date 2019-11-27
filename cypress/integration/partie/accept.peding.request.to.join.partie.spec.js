@@ -1,7 +1,8 @@
 describe("Accept Pending Request to Join Partie", () => {
 
   before(function () {
-      cy.SignIn()
+      cy.SignIn();
+      cy.fixture('vars.json').as('vars')
    })
  
 
@@ -28,20 +29,14 @@ describe("Accept Pending Request to Join Partie", () => {
 
   it("Creating Partie", () => {
       cy.get(goToPartieLink).should('contain', 'Partie').click(); 
-    //   cy.get(createPatie).click();
-    //   cy.get(clickGameImage).click();
-    //   cy.get(supllyPartieName).type(finalPostText);
-    //   cy.get(selectPartieTags).click();
-    //   cy.get('select').select('Any').should('have.value', 'Any');
-    //   cy.get(supllyObjective).type('this is objective');
-    //   cy.get(selectTermsandConditions).click();
-    //   cy.wait(2000);
-    //   cy.get(submithotstPartiy).click();
-    //   cy.wait(2000);
-    //   cy.visit("https://app-dev.partie.com/partie/all");
-      cy.wait(2000);
-    //   cy.get(selectPartieTitle).contains(finalPostText).should("be.visible");
-      cy.get(selectPartieTitle).contains(PartieNumber).click();
+      //cy.get(selectPartieTitle).contains('(Host)').click();
+
+      cy.get('@vars').then((items) => { 
+        const item = items[0] 
+        cy.log(item.JOIN_PARTIE_IN_DIALOG_BOX_NAME);
+        cy.get(item.JOIN_PARTIE_IN_DIALOG_BOX_NAME).click();
+      })
+
       cy.wait(1000);
       cy.get(clickOpenPendingModal).click(); 
       cy.wait(3000); 

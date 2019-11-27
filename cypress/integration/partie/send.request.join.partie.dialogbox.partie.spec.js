@@ -1,4 +1,4 @@
-describe("Send Join Partie Request Test", () => {
+describe("Send Request to Join Partie Test", () => {
 
     before(function () {
         cy.SignIn()
@@ -12,7 +12,7 @@ describe("Send Join Partie Request Test", () => {
    // const to get html elements
    const goToPartieLink              =              'nav > a:nth-child(2)';
 
-    it("Creating Partie", () => {
+    it("Send Request to Join Partie Test", () => {
         cy.get(goToPartieLink).contains('Partie').click();
         cy.get('.partie-title').contains(partiName).click() 
         cy.get('div#join-modal div.modal-content > button').should('contain', 'Send Request').click()

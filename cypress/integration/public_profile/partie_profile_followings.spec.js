@@ -1,7 +1,8 @@
 describe('My first Cypress Test', ()=> {
 
     before(function () {
-        cy.SignIn()
+        cy.SignIn();
+        cy.fixture('vars.json').as('vars')
      })
 
     it('Auth Server', ()=> {
@@ -11,20 +12,31 @@ describe('My first Cypress Test', ()=> {
    const followingsTab1                 =      '.profile-quick-stats > :nth-child(1)';
    const modalList                      =      '.person-listing';
    const closeModal                     =      'div.modal-header > button > img';
-   const expectedVal1                   =       3;
+
 
 
        
         cy.wait(3000);
         cy.get(profileBtn).click(); 
         cy.wait(3000);
-        cy.get(followingsTab1counts).contains(expectedVal1).should('be.visible');
+        
+
+        cy.get('@vars').then((items) => {
+            const item = items[0].FOLLOWINGS_COUNTS
+            cy.log(item)
+            cy.get(followingsTab1counts).should('contain', item);
+        })
+        
         cy.wait(2000);
         cy.get(followingsTab1).click(); 
         cy.wait(2000);
-        cy.get(modalList).should('have.length', expectedVal1)
-        //cy.get('div:nth-child(1) > span.quick-stat-figure').should('have.length', 3)
-        //cy.get('div:nth-child(1) > span.quick-stat-figure').find('tr').its('length').should('eq', 3)
+
+            cy.get('@vars').then((items) => {
+            const item = items[0].FOLLOWINGS_COUNTS
+            cy.log(item)
+            cy.get(modalList).should('have.length', item)
+
+            })
         cy.wait(2000);
         cy.get(closeModal).click(); 
         

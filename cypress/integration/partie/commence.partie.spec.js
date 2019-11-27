@@ -1,7 +1,8 @@
-describe("Commence Partie And Send First Message Test", () => {
+describe("Commence Partie", () => {
 
   before(function () {
-      cy.SignIn()
+      cy.SignIn();
+      cy.fixture('vars.json').as('vars')
    })
  
 
@@ -26,8 +27,7 @@ describe("Commence Partie And Send First Message Test", () => {
  const checkEndPartieButtonExist    =               'button:nth-child(2) > div > span.action-title';
  const hideContextMenu              =                'div#overlayDiv';
 
-  it("Commence Partie And Send First Message Test", () => {
-    cy.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd')
+  it("Commence Partie", () => {
       cy.get(goToPartieLink).contains('Partie').click();
       cy.get(createPatie).click();
       cy.get(clickGameImage).click();
@@ -37,27 +37,32 @@ describe("Commence Partie And Send First Message Test", () => {
       cy.get(supllyObjective).type('this is objective');
      // cy.get(selectPrivacyOption).click();
       cy.get(selectTermsandConditions).click();
-      cy.wait(2000);
+      cy.wait(1000);
       cy.get(submithotstPartiy).click();
-      cy.wait(2000);
-      cy.visit("https://app-dev.partie.com/partie/all");
-      cy.wait(2000);
+    
+
+      cy.get('@vars').then((items) => { 
+        const item = items[0] 
+        cy.log(item.PARTIES_LOUBY_URL)
+        cy.visit(item.PARTIES_LOUBY_URL);
+      })
+ 
+      cy.wait(1000);
       cy.get(selectPartieTitle).contains(finalPostText).should("be.visible");
       cy.get(selectPartieTitle).contains(finalPostText).click();
-      cy.wait(2000);
+
+      cy.wait(1000);
       cy.get(clickOnThreeDots).click(); 
-      cy.wait(2000);
+
       cy.get(clickCommencebuttonMenu).click();
-        cy.wait(2000);
+    
       cy.get(checkToasterMessage).should('contain', 'Partie successfully commenced!')
-      cy.wait(2000);
+
       cy.get(clickOnThreeDots).click(); 
-      cy.wait(2000);
+
       cy.get(checkEndPartieButtonExist).should('contain', 'End Partie'); // check End Partie in ContextMenu
       cy.get(hideContextMenu).click();
-      cy.get('input#message-input').type(finalPostText); // type message in party
-      cy.get(div > button[type="submit"]).click()// click on send button
-      cy.get('div.chat-message-content').last().should('contain', finalPostText) // check message in party
+     
 
  
   });

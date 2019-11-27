@@ -2,6 +2,7 @@ describe("Partie End Test", () => {
 
   before(function () {
       cy.SignIn()
+      cy.fixture('vars.json').as('vars')
    })
  
 
@@ -28,7 +29,7 @@ describe("Partie End Test", () => {
  const clickonYesBottInDialog        =               'div > button.btn.btn-outline'
  const partiePageTitle              =                'div > h1'
 
-  it("Creating Partie", () => {
+  it("End Partie", () => {
       cy.get(goToPartieLink).contains('Partie').click();
       cy.get(createPatie).click();
       cy.get(clickGameImage).click();
@@ -38,27 +39,26 @@ describe("Partie End Test", () => {
       cy.get(supllyObjective).type('this is objective');
      // cy.get(selectPrivacyOption).click();
       cy.get(selectTermsandConditions).click();
-      cy.wait(2000);
       cy.get(submithotstPartiy).click();
-      cy.wait(2000);
-      cy.visit("https://app-dev.partie.com/partie/all");
+
+      
+      cy.get('@vars').then((items) => { 
+        const item = items[0] 
+        cy.log(item.PARTIES_LOUBY_URL)
+        cy.visit(item.PARTIES_LOUBY_URL);
+      })
       cy.wait(2000);
       cy.get(selectPartieTitle).contains(finalPostText).should("be.visible");
+      cy.wait(2000);
       cy.get(selectPartieTitle).contains(finalPostText).click();
       cy.wait(2000);
       cy.get(clickOnThreeDots).click(); 
-      cy.wait(2000);
       cy.get(clickCommencebuttonMenu).click();
-      //div#toast-container div > div --- Partie successfully commenced!
-      cy.wait(2000);
       cy.get(checkToasterMessage).should('contain', 'Partie successfully commenced!')
-      cy.wait(2000);
       cy.get(clickOnThreeDots).click(); 
-      cy.wait(2000);
       cy.get(checkEndPartieButtonExist).should('contain', 'End Partie').click();
       //cy.get(hideContextMenu).click();
       cy.get(clickonYesBottInDialog).click();
-      cy.wait(2000);
       cy.get(partiePageTitle).should('contain', 'Partie')
  
   });
