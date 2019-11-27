@@ -1,7 +1,7 @@
 describe('Profile Page Partie Counts', ()=> {
 
       before(function () {
-       //cy.SignIn()
+       cy.SignIn()
        cy.fixture('vars.json').as('vars')
 
        })
@@ -10,34 +10,38 @@ describe('Profile Page Partie Counts', ()=> {
       it('Auth Server', ()=> {
   
      const profileBtn                     =      'div.actions--left > button > img';
-     const partiesTabCounts               =      'div:nth-child(3) > span.quick-stat-figure';
-     const partiesTab3                    =      '.profile-quick-stats > :nth-child(3)';
      const modalList                      =      '.partie-title';
      const closeModal                     =      'div.modal-header > button > img';
-     let   dynamicParties;
+
             
 
 
+                    cy.wait(3000);
+                    cy.get(profileBtn).click(); 
+                    cy.wait(1000);
 
-  cy.get('@vars').then((items) => {
-
-    const item = items[0]
-   cy.log(item.FOLLOWRSCOUNTS)
-  
-  })
-
-                    // cy.wait(3000);
-                    // cy.get(profileBtn).click(); 
-                    // cy.wait(3000);
-                    // cy.get(partiesTabCounts).contains(expectedVal1).should('be.visible');
-                    // cy.wait(2000);
-                    // cy.get(partiesTab3).click(); 
-                    // cy.wait(2000);
-                    // cy.get(modalList).should('have.length', expectedVal1)
-                    // cy.wait(2000);
-                    // cy.get(closeModal).click(); 
+                    cy.get('@vars').then((items) => {
+                        const item = items[0].PARTIE_COUNTS
+                        cy.log(item)
+                        cy.get('div:nth-child(3) > span.quick-stat-figure').should('contain', item);                    
+                    })
 
 
+                    cy.get('div:nth-child(3) > span.quick-stat-figure').click();
+                    cy.wait(2000);
+
+
+                    cy.get('@vars').then((items) => {
+                        const item = items[0].PARTIE_COUNTS
+                        cy.log(item)
+                        cy.get(modalList).should('have.length', item)
+                   
+                    })
+        
+                    cy.wait(2000);
+                    cy.get(closeModal).click(); 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
                     // cy.request({
                     //     method: 'GET',
@@ -58,20 +62,8 @@ describe('Profile Page Partie Counts', ()=> {
     
                     //     }))
 
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-                    // cy.wait(3000);
-                    // cy.get(profileBtn).click(); 
-                    // cy.wait(3000);
-                    // //cy.get(partiesTabCounts).contains(expectedVal1).should('be.visible');
-                    // cy.wait(2000);
-                    // cy.get(partiesTab3).click(); 
-
-
-
-
-                   // =======================================
                     // cy.server()
                     // cy.route({
                     //   method: 'GET',

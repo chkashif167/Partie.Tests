@@ -33,8 +33,8 @@ describe("Accept Pending Request to Join Partie", () => {
 
       cy.get('@vars').then((items) => { 
         const item = items[0] 
-        cy.log(item.JOIN_PARTIE_IN_DIALOG_BOX_NAME);
-        cy.get(item.JOIN_PARTIE_IN_DIALOG_BOX_NAME).click();
+        cy.log(item.ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK);
+        cy.visit(item.ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK);
       })
 
       cy.wait(1000);

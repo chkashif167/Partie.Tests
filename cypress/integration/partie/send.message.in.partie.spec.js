@@ -2,6 +2,7 @@ describe("Send Message In Partie", () => {
 
   before(function () {
       cy.SignIn()
+      cy.fixture('vars.json').as('vars')
    })
  
 
@@ -45,7 +46,13 @@ describe("Send Message In Partie", () => {
       cy.wait(2000);
       cy.get(submithotstPartiy).click();
       cy.wait(2000);
-      cy.visit("https://app-dev.partie.com/partie/all");
+     
+      cy.get('@vars').then((items) => { 
+        const item = items[0] 
+        cy.log(item.PARTIES_LOUBY_URL)
+        cy.visit(item.PARTIES_LOUBY_URL);
+      })
+
       cy.wait(2000);
       cy.get(selectPartieTitle).contains(finalPartietText).should("be.visible");
       cy.get(selectPartieTitle).contains(finalPartietText).click();

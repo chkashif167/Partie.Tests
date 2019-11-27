@@ -15,17 +15,20 @@ describe("Join Partie In Dialog Box Test", () => {
 
     it("Join Partie In Dialog Box Test", () => {
         cy.get(goToPartieLink).contains('Partie').click();
+      
 
-
+        cy.wait(3000); 
         cy.get('@vars').then((items) => { 
             const item = items[0] 
             cy.log(item.JOIN_PARTIE_IN_DIALOG_BOX_NAME);
-            cy.wait(1000); 
+            cy.get('input#search').type(item.JOIN_PARTIE_IN_DIALOG_BOX_NAME)  
+            cy.wait(5000); 
             cy.get('.partie-title').contains(item.JOIN_PARTIE_IN_DIALOG_BOX_NAME).click();
           })
 
         //cy.get('.partie-title').contains(partiName).click() 
         cy.get('div#join-modal div.modal-content > button').should('contain', 'Join Room').click()
+        cy.scrollTo('500px')
                
         });
      

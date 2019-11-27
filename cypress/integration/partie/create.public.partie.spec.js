@@ -38,9 +38,9 @@ describe("Create Public Partie", () => {
       
       
       cy.get('@vars').then((items) => { 
-        const item = items[0] 
-        cy.log(item.PARTIES_LOUBY_URL)
-        cy.visit(item.PARTIES_LOUBY_URL);
+        const item = items[0].PARTIES_LOUBY_URL 
+        cy.log(item)
+        cy.visit(item);
       })
 
       cy.wait(1000);

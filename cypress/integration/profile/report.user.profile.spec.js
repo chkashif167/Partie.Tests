@@ -16,19 +16,19 @@ describe('Profile Page Badges Count Test', ()=> {
 
 
        
-        cy.wait(3000);
-        cy.get(profileBtn).click(); 
-        cy.wait(1000);
-
         cy.get('@vars').then((items) => {
-            const item = items[0].BADGES_COUNT
+            const item = items[0].USER1_PROFILE
             cy.log(item)
-            cy.get(BadgesTAb).should('contain', item);
+            cy.visit(item)
+     
         })
        
-        cy.get(partiesTab3).click(); 
-        cy.wait(1000);
-        cy.get(closeModal).click(); 
+        cy.get('div.actions--right > button:nth-child(1) > img').click()  // click on three dots
+        cy.get('.action-title').contains('Report').click()
+        cy.get('textarea#report').type('Reprting This User');
+        cy.get('div#feedback-modal div.modal-content > button').click();
+        cy.get('div#toast-container div > div ').should('contain', 'User successfully reported')
+
         
    
    

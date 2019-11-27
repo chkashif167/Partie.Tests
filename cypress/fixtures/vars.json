@@ -1,21 +1,26 @@
 [{
     "SEVER_URL": "https://app-dev.partie.com/",
     "OWN_PROFILE_URL": "https://app-dev.partie.com/profile/d23eef09-e4e1-455d-a74c-03dfc61bde11",
-    "USER1_PRIFILE": "",
-    "USER2_PRIFILE": "",
+    "USER1_PROFILE": "https://app-dev.partie.com/profile/88a1baac-9331-4b8f-badc-46c092997c47",
+    "USER2_PROFILE": "https://app-dev.partie.com/profile/88a1baac-9331-4b8f-badc-46c092997c47",
 
 
-    "FOLLOWINGS_COUNTS": 8,
-    "FOLLOWERS_COUNTS": 18,
-    "PARTIE_COUNTS": 44,
-    "BADGES_COUNT": 13,
+    "FOLLOWINGS_COUNTS": 7,
+    "FOLLOWERS_COUNTS": 17,
+    "PARTIE_COUNTS": 46,
+    "BADGES_COUNTS": 13,
 
 
     "PARTIES_LOUBY_URL": "https://app-dev.partie.com/partie/all",
     "BAN_USER_PARTIE_LINK": "https://app-dev.partie.com/partie/22f18e16-8272-491f-9d46-52d34850d5e0/chat",
-    "ACCEPT_JOIN_PARTIE_LINK": "https://app-dev.partie.com/partie/22f18e16-8272-491f-9d46-52d34850d5e0/chat",
+    "ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK": "https://app-dev.partie.com/partie/22f18e16-8272-491f-9d46-52d34850d5e0/chat",
 
-    "JOIN_PARTIE_IN_DIALOG_BOX_NAME": "JoinPartieRequest1"
+    "JOIN_PARTIE_IN_DIALOG_BOX_NAME": "Partie 33 33 33",
+    "SEND_REQUEST_TO_JOIN_PARTIE_IN_DIALOG_BOX_NAME": "partie444 444 444",
+    "SEND_FOLLOW_REQUEST_IN_DIALOG_BOX_NAME": "partie444 444 444"
+
+
+
 
 
  
@@ -23,7 +28,7 @@
 },
 {
     "before": "cy.fixture('vars.json').as('vars')",
-    "code" : "cy.get('@vars').then((items) => { const item = items[0] cy.log(item.FOLLOWRSCOUNTS)})"
+    "code" : "cy.get('@vars').then((items) => { const item = items[0]; cy.log(item.FOLLOWRSCOUNTS) })"
 }
 
 ]
