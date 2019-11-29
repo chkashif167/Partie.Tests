@@ -1,11 +1,11 @@
-describe('Profile Page Followrs Count Test', ()=> {
+describe('Followrs Count Profile Page Test', ()=> {
 
     before(function () {
         cy.SignIn();
         cy.fixture('vars.json').as('vars')
      })
 
-    it('Auth Server', ()=> {
+    it('Followrs Count', ()=> {
 
    const profileBtn                     =      'div.actions--left > button > img';
    const followersTab1counts           =      'div:nth-child(2) > span.quick-stat-figure';

@@ -1,11 +1,11 @@
-describe('Report User Profile Page Test', ()=> {
+describe('Unfollow User On Profile Test', ()=> {
 
     before(function () {
         cy.SignIn();
         cy.fixture('vars.json').as('vars')
      })
 
-    it('Report User', ()=> {
+    it('Unfollow', ()=> {
 
 
 
@@ -18,10 +18,9 @@ describe('Report User Profile Page Test', ()=> {
         })
        
         cy.get('div.actions--right > button:nth-child(1) > img').click()  // click on three dots
-        cy.get('.action-title').contains('Report').click()
-        cy.get('textarea#report').type('Reprting This User');
-        cy.get('div#feedback-modal div.modal-content > button').click();
-        cy.get('div#toast-container div > div ').should('contain', 'User successfully reported')
+        cy.wait(6000)
+        cy.get('span.action-title').contains('Unfollow').click()
+          cy.get('div#toast-container div > div ').should('contain', 'User successfully un-followed')
 
         
    

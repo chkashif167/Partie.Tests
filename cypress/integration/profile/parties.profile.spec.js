@@ -1,4 +1,4 @@
-describe('Profile Page Partie Counts', ()=> {
+describe('Partie Counts Profile Page Test', ()=> {
 
       before(function () {
        cy.SignIn()
@@ -7,7 +7,7 @@ describe('Profile Page Partie Counts', ()=> {
        })
    
   
-      it('Auth Server', ()=> {
+      it('Partie Counts', ()=> {
   
      const profileBtn                     =      'div.actions--left > button > img';
      const modalList                      =      '.partie-title';

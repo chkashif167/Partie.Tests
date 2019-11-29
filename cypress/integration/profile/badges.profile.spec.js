@@ -1,11 +1,11 @@
-describe('Profile Page Badges Count Test', ()=> {
+describe('Badges Count Profile Page Test', ()=> {
 
     before(function () {
         cy.SignIn();
         cy.fixture('vars.json').as('vars')
      })
 
-    it('Auth Server', ()=> {
+    it('Followrs Count', ()=> {
 
    const profileBtn                     =      'div.actions--left > button > img';
    const BadgesTAb                      =      'div:nth-child(4) > span.quick-stat-figure';

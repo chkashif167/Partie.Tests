@@ -1,11 +1,11 @@
-describe('My first Cypress Test', ()=> {
+describe('Followings Count Profile Page Test', ()=> {
 
     before(function () {
         cy.SignIn();
         cy.fixture('vars.json').as('vars')
      })
 
-    it('Auth Server', ()=> {
+    it('Followings Count', ()=> {
 
    const profileBtn                     =      'div.actions--left > button > img';
    const followingsTab1counts           =      'div:nth-child(1) > span.quick-stat-figure';
