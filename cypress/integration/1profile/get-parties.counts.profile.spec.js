@@ -18,8 +18,8 @@ describe("Partie Counts Profile Page Test", () => {
       cy.log(response.body);
       assert.equal(response.status, 200);
       expect(response.body).to.not.be.null;
-      cy.log(response.body.length.id);
-      cy.get("div:nth-child(3) > span.quick-stat-figure").should("contain",response.body.length);
+      cy.log(response.body);
+      cy.get("div:nth-child(3) > span.quick-stat-figure").should("contain",response.body.data);
     });
   });
 });

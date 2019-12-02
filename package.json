@@ -9,10 +9,9 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "cypress": "^3.5.0"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "cypress": "^3.7.0",
     "cypress-file-upload": "^3.4.0"
   }
 }
