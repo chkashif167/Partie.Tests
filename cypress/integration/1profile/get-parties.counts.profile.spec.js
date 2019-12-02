@@ -19,10 +19,7 @@ describe("Partie Counts Profile Page Test", () => {
       assert.equal(response.status, 200);
       expect(response.body).to.not.be.null;
       cy.log(response.body.length.id);
-      cy.get("div:nth-child(3) > span.quick-stat-figure").should(
-        "contain",
-        response.body.length
-      );
+      cy.get("div:nth-child(3) > span.quick-stat-figure").should("contain",response.body.length);
     });
   });
 });
