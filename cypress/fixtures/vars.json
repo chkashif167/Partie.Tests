@@ -4,12 +4,9 @@
     "USER1_PROFILE": "https://app-dev.partie.com/profile/3411d971-64f5-4352-b29a-8707ae5072f9",
     "USER2_PROFILE": "https://app-dev.partie.com/profile/88a1baac-9331-4b8f-badc-46c092997c47",
 
+    "USER_FOR_FEED": "devuser1",
 
-    "FOLLOWINGS_COUNTS": 6,
-    "FOLLOWERS_COUNTS": 18,
-    "PARTIE_COUNTS": 46,
-    "BADGES_COUNTS": 8,
-
+    
 
     "PARTIES_LOUBY_URL": "https://app-dev.partie.com/partie/all",
     "BAN_USER_PARTIE_LINK": "https://app-dev.partie.com/partie/22f18e16-8272-491f-9d46-52d34850d5e0/chat",
@@ -21,17 +18,9 @@
 
 
 
-
-
  
 
-},
-{
-    "before": "cy.fixture('vars.json').as('vars')",
-    "code" : "cy.get('@vars').then((items) => { const item = items[0]; cy.log(item.FOLLOWRSCOUNTS) })"
-}
-
-]
+}]
 
 
 
