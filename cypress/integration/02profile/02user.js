@@ -31,9 +31,9 @@ describe("6 Follow User From Profile Page", () => {
       cy.log(item);
       cy.visit(item);
     });
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get("div.actions--right > button:nth-child(1) > img").click(); // click on three dots
-    cy.wait(3000)
+    cy.wait(3000);
     cy.get("span.action-title")
       .contains("Mute")
       .click();
@@ -48,9 +48,9 @@ describe("6 Follow User From Profile Page", () => {
       cy.log(item);
       cy.visit(item);
     });
-    cy.wait(5000)
+    cy.wait(5000);
     cy.get("div.actions--right > button:nth-child(1) > img").click(); // click on three dots
-    cy.wait(5000)
+    cy.wait(5000);
     cy.get("span.action-title")
       .contains("Unmute")
       .click();
@@ -73,7 +73,7 @@ describe("6 Follow User From Profile Page", () => {
     cy.get("form > div > button")
       .should("contain", "Send")
       .click();
-      cy.get("cdk-virtual-scroll-viewport").scrollTo('bottom') 
+    //cy.get("cdk-virtual-scroll-viewport").scrollTo('bottom')
     cy.wait(4000);
     cy.get(".chat-message-content")
       .contains("This is Messageee")
@@ -96,7 +96,7 @@ describe("6 Follow User From Profile Page", () => {
       "contain",
       "User successfully reported"
     );
-  })
+  });
   it("Unfollow", () => {
     cy.get("@vars").then(items => {
       const item = items[0].USER1_PROFILE;

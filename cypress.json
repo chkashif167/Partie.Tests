@@ -1,7 +1,12 @@
 {
     "defaultCommandTimeout": 100000,
     "chromeWebSecurity": false,
-    "baseUrl": "https://app-dev.partie.com"
+    "baseUrl": "https://app-dev.partie.com",
+    "env": {
+        "completeAchievemnets": "",
+        "inCompleteAcheivement": "",
+        "totalBadges" : 10
+    }
 
 
 }

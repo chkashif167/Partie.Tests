@@ -8,7 +8,7 @@ describe("1 Followings Count Profile Page Test", () => {
     cy.restoreLocalStorage();
     cy.fixture("vars.json").as("vars");
   });
-
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   it("Followings Count", () => {
     const profileBtn = "div.actions--left > button > img";
     const followingsTab1counts = "div:nth-child(1) > span.quick-stat-figure";
@@ -18,32 +18,28 @@ describe("1 Followings Count Profile Page Test", () => {
 
     cy.wait(3000);
     cy.get(profileBtn).click();
-     cy.wait(5000);
-    cy.get('div:nth-child(1) > span.quick-stat-figure').then(($el)=>{
-      cy.wait(5000);
+    cy.wait(3000);
+    cy.get("div:nth-child(1) > span.quick-stat-figure").then($el => {
+      cy.wait(3000);
       cy.get(followingsTab1).click();
-      cy.wait(5000);
+      cy.wait(3000);
       const totalFollowings = $el.get(0).textContent;
-      cy.log('Total Followings', totalFollowings)
+      cy.log("Total Followings", totalFollowings);
       cy.get(modalList).should("have.length", totalFollowings);
-    })
+    });
 
     cy.wait(2000);
     cy.get(closeModal).click();
   });
-
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   it("Followrs Count", () => {
-    const profileBtn = "div.actions--left > button > img";
     const modalList = ".person-listing";
     const closeModal = "div.modal-header > button > img";
 
-    cy.wait(1000);
-    cy.get(profileBtn).click();
-    cy.wait(5000);
     cy.get("div:nth-child(2) > span.quick-stat-figure").then($el => {
-    cy.wait(3000);
-    cy.get("div:nth-child(2) > span.quick-stat-label").click(); // Followers Tab 2 click
-    cy.wait(3000);
+      cy.wait(3000);
+      cy.get("div:nth-child(2) > span.quick-stat-label").click(); // Followers Tab 2 click
+      cy.wait(3000);
       const totalFollowers = $el.get(0).textContent;
       cy.log("Total Followers", totalFollowers);
       cy.get(modalList).should("have.length", totalFollowers);
@@ -51,21 +47,16 @@ describe("1 Followings Count Profile Page Test", () => {
 
     cy.wait(1000);
     cy.get(closeModal).click();
-  })
+  });
 
   it("Partie Counts", () => {
-    const profileBtn = "div.actions--left > button > img";
     const modalList = ".partie-title";
     const closeModal = "div.modal-header > button > img";
 
-    cy.wait(5000);
-    cy.get(profileBtn).click();
-    cy.wait(5000);
-    
     cy.get("div:nth-child(3) > span.quick-stat-figure").then($el => {
-      cy.wait(5000);
+      cy.wait(2000);
       cy.get("div:nth-child(3) > span.quick-stat-label").click();
-        cy.wait(5000);
+      cy.wait(2000);
       const totalParties = $el.get(0).textContent;
       cy.log("Total Parties", totalParties);
       cy.get(modalList).should("have.length", totalParties);
@@ -74,62 +65,51 @@ describe("1 Followings Count Profile Page Test", () => {
     cy.wait(2000);
     cy.get(closeModal).click();
   });
-
-  it.skip("Badges Count", () => {
-    const profileBtn = "div.actions--left > button > img";
-
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  it("Badges Count", () => {
     const modalList = ".partie-title";
     const closeModal = "div.modal-header > button > img";
-
-    cy.wait(3000);
-    cy.get(profileBtn).click();
-    cy.wait(4000);
-
-    cy.get("div:nth-child(4) > span.quick-stat-figure").then($el => {
-      cy.get("div.profile-quick-stats > div:nth-child(4)").click(); // click on badges tab
-      //debugger;
-      cy.wait(2000);
-      const totalBadges = $el.get(0).textContent;
-      cy.log("Total Badges", totalBadges);
-      //cy.get(modalList).should("have.length", totalBages);
-
-      cy.get(".badge-group")
-        .find(".token-value")
-        .then(() => {
-          var sum = 0;
-          Cypress.$(".token-value span").each(function() {
-            sum += +Cypress.$(this).text() || 0;
-          });
-          cy.log(sum);
-        });
-      var inCompleteAcheivement;
+    cy.wait(2000);
+    cy.get("div.profile-quick-stats > div:nth-child(4)").click(); // click on badges tab
+    cy.get(".section-header + .badge-group")
+      .find(".achievement")
+      .as("totalAchievements");
+    cy.get("@totalAchievements").then(totalAchievements => {
+      var TotalAchieveMetnsVar = Cypress.$(totalAchievements).length;
+      cy.log(TotalAchieveMetnsVar);
       cy.get(".section-header + .badge-group")
         .find(".achievement.incomplete")
-        .then($els => {
-          inCompleteAcheivement = Cypress.$($els).length;
-          cy.log("incomplete AchievMents", inCompleteAcheivement);
-        });
-
-      var completeAchievemnets;
-      cy.get(".section-header + .badge-group")
-        .find(".achievement")
-        .then($els => {
-          completeAchievemnets = Cypress.$($els).length;
-          cy.log("AchievMents", completeAchievemnets);
-        });
+        .as("incompleteAchievements");
+      cy.get("@incompleteAchievements").then(incompleteAchievements => {
+        var incompleteAchievementsVar = Cypress.$(incompleteAchievements)
+          .length;
+        cy.log(incompleteAchievementsVar);
+        var TotalCompleteAchievment =
+          TotalAchieveMetnsVar - incompleteAchievementsVar;
+        cy.log(TotalCompleteAchievment);
+        cy.get(".badge-group")
+          .find(".token-value")
+          .then(() => {
+            var sum = 0;
+            Cypress.$(".token-value span").each(function() {
+              sum += +Cypress.$(this).text() || 0;
+            });
+            cy.log(sum);
+            var TotalBadgesAndAchivment = TotalCompleteAchievment + sum;
+            cy.log(TotalBadgesAndAchivment);
+            cy.get("div:nth-child(4) > span.quick-stat-figure").should(
+              "contain",
+              TotalBadgesAndAchivment
+            );
+          });
+      });
     });
-
-   
     cy.wait(1000);
     cy.get(closeModal).click();
   });
-
-  it("go to profile page", () => {
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  it("Edit Profile", () => {
     cy.wait(3000);
-    cy.get(profileBtn).click();
-    cy.wait(5000);
-
-    cy.wait(6000);
     cy.get("div.actions--right > button:nth-child(1) > img").click();
     cy.wait(4000);
     cy.get(".action-title")
@@ -145,7 +125,7 @@ describe("1 Followings Count Profile Page Test", () => {
     cy.get('input[name="lastName"]').clear();
     cy.wait(3000);
     cy.get('input[name="lastName"]').type("UserLastName"); // lastname
-    
+
     cy.get('form[name="profile"] span:nth-child(2) > label').click(); // play style
     cy.wait(2000);
     cy.get("textarea#bio").clear();

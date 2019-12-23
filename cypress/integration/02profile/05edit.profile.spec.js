@@ -16,9 +16,7 @@ context("Actions", () => {
       cy.wait(3000);
       cy.get(profileBtn).click();
       cy.wait(5000);
-    });
-
-    it("Check Edit Title", () => {
+ 
       cy.wait(6000);
       cy.get("div.actions--right > button:nth-child(1) > img").click();
       cy.wait(4000);
@@ -26,9 +24,7 @@ context("Actions", () => {
         .contains("Edit")
         .should("be.visible")
         .click();
-    });
 
-    it("Fill Form Fields", () => {
       cy.wait(3000);
       cy.get('input[name="firstName"]').clear();
       cy.wait(3000);
