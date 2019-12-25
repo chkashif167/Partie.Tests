@@ -33,7 +33,7 @@ describe("Send Message In Partie", () => {
  const varifiyMessage               =               'div > div.chat-message-content'
  
 
-  it("Creating Partie", () => {
+  it("Send Message In Partie", () => {
       cy.get(goToPartieLink).contains('Partie').click();
       cy.get(createPatie).click();
       cy.get(clickGameImage).click();

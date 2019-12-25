@@ -14,7 +14,7 @@ describe("Send Follow Request Test", () => {
    const goToPartieLink              =              'nav > a:nth-child(2)';
    const checkToasterMessage          =               'div#toast-container div > div ';
 
-    it("Creating Partie", () => {
+    it("Send Follow Request Test", () => {
         cy.get(goToPartieLink).contains('Partie').click();
         //cy.get('.partie-title').contains(partiName).click() 
 

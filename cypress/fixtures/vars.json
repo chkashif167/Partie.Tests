@@ -9,18 +9,35 @@
     
 
     "PARTIES_LOUBY_URL": "https://app-dev.partie.com/partie/all",
-    "BAN_USER_PARTIE_LINK": "https://app-dev.partie.com/partie/22f18e16-8272-491f-9d46-52d34850d5e0/chat",
-    "ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK": "https://app-dev.partie.com/partie/22f18e16-8272-491f-9d46-52d34850d5e0/chat",
 
-    "JOIN_PARTIE_IN_DIALOG_BOX_NAME": "Partie 33 33 33",
-    "SEND_REQUEST_TO_JOIN_PARTIE_IN_DIALOG_BOX_NAME": "partie444 444 444",
-    "SEND_FOLLOW_REQUEST_IN_DIALOG_BOX_NAME": "partie444 444 444"
+    "ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK": "https://app-dev.partie.com/partie/de203a18-b30d-4e22-ac90-e327289dc42d/chat",
+    "BAN_USER_PARTIE_LINK": "https://app-dev.partie.com/partie/de203a18-b30d-4e22-ac90-e327289dc42d/chat",
+
+    "JOIN_PARTIE_IN_DIALOG_BOX_NAME": "CypressParite22User1_12",
+    "SEND_REQUEST_TO_JOIN_PARTIE_IN_DIALOG_BOX_NAME": "CypressParite22User1_12", 
+    "SEND_FOLLOW_REQUEST_IN_DIALOG_BOX_NAME": "CypressParite22User1_12"
+
+},
+
+{
+    "SEVER_URL": "//base url of the app",
+    "OWN_PROFILE_URL": "//personal profile link",
+    "USER1_PROFILE": "//profile link of other side user",
+    "USER2_PROFILE": "//optional",
+    "USER_FOR_FEED": "// provide display name of other side user for feed",
 
 
+    "PARTIES_LOUBY_URL":" // go to parity lobby",
 
- 
+    "BAN_USER_PARTIE_LINK":" // user 1st will prepare partie with user who want to ban use a 3rd user ",
+    "ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK":" // user 1st prepare a partie with pending request to join partie ....... keep in mind request will expire in 3 mins ..... 1st user will create partie and 2nd user should not be friend and 2nd user will send request to join parit ",
+    
+    "JOIN_PARTIE_IN_DIALOG_BOX_NAME": "// user 2 will prepare a praity with non following user ",
+    "SEND_REQUEST_TO_JOIN_PARTIE_IN_DIALOG_BOX_NAME": "// user 2prepare a praity with non following user", 
+    "SEND_FOLLOW_REQUEST_IN_DIALOG_BOX_NAME": "// user 2 will prepare a praity with non following user"
+}
 
-}]
+]
 
 
 

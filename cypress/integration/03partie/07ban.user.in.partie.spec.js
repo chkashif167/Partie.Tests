@@ -13,13 +13,12 @@ describe("Ban User From The Partie Partie", () => {
 
  // const to get html elements
  const goToPartieLink              =                'nav > a:nth-child(2)';
- const selectPartieTitle          =                 'span.partie-title';
  const checkToasterMessage          =               'div#toast-container div > div ';
  const patcipantsModal              =               'div.users > span';
  const removeUserButton             =               'button#removeButton > img';
  const closeModalButton             =               'div.modal-header > button > img';
 
-  it("Creating Partie", () => {
+  it("Ban User From The Partie Partie", () => {
       cy.get(goToPartieLink).should('contain', 'Partie').click(); 
       //cy.get(selectPartieTitle).contains('(Host)').click();
 

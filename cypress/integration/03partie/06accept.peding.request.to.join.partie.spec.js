@@ -13,21 +13,12 @@ describe("Accept Pending Request to Join Partie", () => {
 
  // const to get html elements
  const goToPartieLink              =              'nav > a:nth-child(2)';
- const createPatie                 =              'partie-room-list > div > a';
- const clickGameImage              =              'div:nth-child(1) > partie-game > div > img';
- const supllyPartieName            =              'input[name="displayName"]';
- const selectPartieTags           =               'form[name="room"] partie-room-tags > div > div:nth-child(1)';
- const supllyObjective            =               'input[name="description"]';
- const selectPrivacyOption        =               'form[name="room"] div.switch-group > label > img:nth-child(4)';
- const selectTermsandConditions   =               'form[name="room"] div:nth-child(6) > div > label > span';
- const submithotstPartiy          =               'form[name="room"] > button[type="submit"]'; 
- const selectPartieTitle          =                'span.partie-title';
- const checkToasterMessage          =               'div#toast-container div > div ';
+  const checkToasterMessage          =               'div#toast-container div > div ';
  const clickOpenPendingModal       =               'div.user-actions > button:nth-child(2) > img';
  const AcceptPedingRequestButton    =               'div#join-modal div.btn-group.request-actions > button > img';
  const closeModalButton             =               'div.modal-header > button > img';
 
-  it("Creating Partie", () => {
+  it("Accept Pending Request to Join Partie", () => {
       cy.get(goToPartieLink).should('contain', 'Partie').click(); 
       //cy.get(selectPartieTitle).contains('(Host)').click();
 
@@ -36,7 +27,6 @@ describe("Accept Pending Request to Join Partie", () => {
         cy.log(item.ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK);
         cy.visit(item.ACCEPT_PENDING_REQUEST_TO_JOIN_PARTIE_LINK);
       })
-
       cy.wait(1000);
       cy.get(clickOpenPendingModal).click(); 
       cy.wait(3000); 

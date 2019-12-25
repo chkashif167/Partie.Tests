@@ -26,7 +26,7 @@ describe("Invite Friend To Join Partie", () => {
  const clickonInviteButton        =                 'div.modal-content > div > div:nth-child(1) > button';
  const clickOnModalCloseButton    =                 'div.modal-header > button > img';
 
-  it("Creating Partie", () => {
+  it("Invite Friend To Join Partie", () => {
       cy.get(goToPartieLink).should('contain','Partie').click();
       cy.get(createPatie).click();
       cy.get(clickGameImage).click();
