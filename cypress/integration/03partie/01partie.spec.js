@@ -1,7 +1,7 @@
 describe("Partie 1", () => {
   before(() => {
     cy.SignIn();
-     cy.saveLocalStorage();checkToasterMessage
+     cy.saveLocalStorage();
   });
 
   beforeEach(() => {
