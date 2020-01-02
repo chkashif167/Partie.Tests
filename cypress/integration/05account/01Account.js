@@ -71,7 +71,7 @@ describe("Accounts", () => {
       });
   });
   //////////////////////////////////////////////////////////////////////////////////////////
-  it("Notifications Setting", () => {
+  it.skip("Notifications Setting", () => {
     cy.get("@vars").then(items => {
       const item = items[0];
       cy.visit(item.SEVER_URL + "/account");
@@ -97,23 +97,24 @@ describe("Accounts", () => {
     cy.get(".page-preferences .preference-item").each(($el, index, $list) => {
       var getButtons = Cypress.$($el).find("button");
       cy.get(getButtons).each(($btn, i, $btlist) => {
-        cy.log("aaaaaaaaaa",i)
-        cy.log("bbbbbbbbbbb",index)
-       cy.log("ddddddddddddddddd", $btn.get(index[i]));
+        cy.log("aaaaaaaaaa", i);
+        cy.log("bbbbbbbbbbb", index);
+        cy.log("ddddddddddddddddd", $btn.get(index[i]));
+
         if ($btn.hasClass("enabled")) {
           cy.get($btn).should("class", "enabled");
           cy.get($btn.get(index[i])).click();
           cy.log("Disable");
         } else {
           cy.get($btn).should("not.have.class", "enabled");
-         cy.get($btn.get(index[i])).click();
+          cy.get($btn.get(index[i])).click();
           cy.log("Enabled");
         }
       });
     });
   });
   //////////////////////////////////////////////////////////////////////////////////////////
-  it.skip("Privacy & Safety Options", () => {
+  it("Privacy & Safety Options", () => {
     cy.get("@vars").then(items => {
       const item = items[0];
       cy.visit(item.SEVER_URL + "/account");
@@ -166,11 +167,46 @@ describe("Accounts", () => {
           cy.log("Content Age Screening : Disabled");
         }
       });
-    cy.get("div.actions--left > button > img").click();
+
+    cy.get("div:nth-child(4) > div > div.toggle-main > div > span").click();
+
+    cy.get(".modal-content .checkbox-group").each(($el, index, list) => {
+      cy.log("lentth1111111", list.length);
+      var getLabels = Cypress.$($el).find("label.checkbox ");
+
+      cy.get(getLabels).each(($lebel, i, $labellist) => {
+        cy.log("222222222222222", $labellist.length);
+        const labels = $lebel.get(i);
+        cy.get(labels).each((lbl, i, lbllist) => {
+          if (lbl.hasClass("checked")) {
+            cy.get(lbl.get(i)).should("have.class", "checked");
+            cy.get(lbl.get(i)).click();
+            cy.log("Disabled");
+          } else {
+            cy.get(lbl.get(i)).should("not.have.class", "checked");
+            cy.get(lbl.get(i)).click();
+            cy.log("Enabled");
+          }
+        });
+      });
+    });
+    cy.get("div.modal-header > button > img").click({ force: true });
+
+    cy.get("div.preference-item.short > span").click();
+
+    cy.get("body").then($body => {
+      if ($body.find("div.modal-header > h2").length > 0) {
+        //cy.log("yes")
+        cy.get("div.modal-header > h2").should("contain", "Muted Users");
+      } else {
+        cy.log("No Muter User Found");
+      }
+    });
+    // cy.get("div.actions--left > button > img").click();
   });
   //////////////////////////////////////////////////////////////////////////////////////////
-  // it("Privacy & Safety > Post Visibility", () => {
-  // // cy.get('div:nth-child(4) > div > div.toggle-main > div > span')
-  // });
+  it("Privacy & Safety > Post Visibility", () => {
+    // cy.get('div:nth-child(4) > div > div.toggle-main > div > span')
+  });
   //////////////////////////////////////////////////////////////////////////////////////////
 });
