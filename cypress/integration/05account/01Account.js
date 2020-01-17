@@ -13,8 +13,21 @@ describe("Accounts", () => {
     // cy.saveLocalStorage();
     //cy.SignIn()
   });
+  /////////////////////////////////////////////////////////////////////////////////////////
+  it("Referral Link", () => {
+    cy.get("@vars").then(items => {
+      const item = items[0];
+      cy.visit(item.SEVER_URL + "/account");
+    });
+    cy.log("Referral Link");
+    cy.get("div.account-option.referral-link > button").click();
+    cy.wait(2000);
+    cy.get("div.account-option.referral-link > button").should("contain", "Copied")
+
+  })
+
   //////////////////////////////////////////////////////////////////////////////////////////
-  it.skip("Preferences", () => {
+  it("Preferences", () => {
     cy.get("@vars").then(items => {
       const item = items[0];
       cy.visit(item.SEVER_URL + "/account");
@@ -71,7 +84,7 @@ describe("Accounts", () => {
       });
   });
   //////////////////////////////////////////////////////////////////////////////////////////
-  it.skip("Notifications Setting", () => {
+  it("Notifications Setting", () => {
     cy.get("@vars").then(items => {
       const item = items[0];
       cy.visit(item.SEVER_URL + "/account");
@@ -202,11 +215,16 @@ describe("Accounts", () => {
         cy.log("No Muter User Found");
       }
     });
-    // cy.get("div.actions--left > button > img").click();
+    cy.get("div.actions--left > button > img").click();
   });
   //////////////////////////////////////////////////////////////////////////////////////////
-  it("Privacy & Safety > Post Visibility", () => {
-    // cy.get('div:nth-child(4) > div > div.toggle-main > div > span')
+  it("Terms", () => {
+    cy.log("Terms");
+    cy.get("main > div:nth-child(5) > span").click();
+    cy.wait(2000)
+    cy.get("div#terms-modal h2").should("contain", "Terms");
+    cy.get("div#terms-modal img").click();
+   
   });
   //////////////////////////////////////////////////////////////////////////////////////////
 });
